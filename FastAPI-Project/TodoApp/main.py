@@ -12,7 +12,7 @@ app = FastAPI()
 class TodosRequest(BaseModel):
     title: str = Field(min_length=3)
     description: str = Field(max_length=100)
-    priority: int = Field(gt=1, lt=6)
+    priority: int = Field(ge=1, lt=6)
     complete: bool
     
     
@@ -41,6 +41,6 @@ async def get_id(db: db_dependency, todo_id: int = Path(gt=0)):
         return todo_model
     raise HTTPException(status_code=404, detail="Todo not found")
 
-@app.post("/todo", sdtatus_code=status.HTTP_201_CREATED)
-async def create_todos(TodoRequest):
+@app.post("/todo", status_code=status.HTTP_201_CREATED)
+async def create_todos(db: db_dependency, todo_request: TodosRequest):
     pass

@@ -1,5 +1,5 @@
 from database import Base
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Boolean  # type: ignore
 class Todos(Base):
 
     __tablename__ = 'todos'
