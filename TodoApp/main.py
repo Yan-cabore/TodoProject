@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session # type: ignore
 import models
 from models import Todos
 from database import engine, SessionLocal
-
+from routers import auth
 
 app = FastAPI()
 
@@ -18,6 +18,8 @@ class TodosRequest(BaseModel):
     
 
 models.Base.metadata.create_all(bind=engine)
+
+app.include_router(auth.router)
 
 def get_db():
     db = SessionLocal()
